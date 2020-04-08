@@ -16,3 +16,8 @@ COPY . .
 EXPOSE 3000
 # Finally runs the application
 CMD [ "npm", "start"]
+
+#start Container with:
+
+# docker build -t sample:dev .
+# docker run -it --rm -p 3001:3000 sample:dev
