@@ -37,7 +37,7 @@ export default function App() {
             {/* {isLoggedIn && ( */}
             <li className="nav-item">
               <Link className="nav-link" to="/topics">
-                Topics Test
+                TopicsJuhuu
               </Link>
             </li>
             {/* )} */}
