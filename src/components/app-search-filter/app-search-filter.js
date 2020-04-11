@@ -1,11 +1,10 @@
 // Leiste mit Suchfiltern für Apps
 // Suche nach App-Namen (Textinput) und Filter nach Kategorie (Dropdown)
 
-import React, { Component } from "react";
+import React from "react";
 import { Form } from "semantic-ui-react";
 
-class SearchAndFilterBar extends Component {
-  render() {
+function SearchAndFilterBar() {
     return (
         <Form>
             <Form.Group widths='equal'>
@@ -17,7 +16,6 @@ class SearchAndFilterBar extends Component {
             </Form.Group>
         </Form>
     )
-  }
 }
 
 export default SearchAndFilterBar;
