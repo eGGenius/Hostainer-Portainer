@@ -1,0 +1,26 @@
+.app-list-item {
+    border: 1px solid #9d9da5;
+    border-radius: 0.4rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.app-list-media-body {
+    border-left: 1px solid #9d9da5;
+    padding: 1rem 0 1rem 0;
+}
+
+.app-list-item-description {
+    border-top: 1px solid #ceced3;
+    padding-top: 2px;
+    margin-bottom: 0;
+}
+
+.app-list-media-buttons {
+    float: right;
+}
+
+.app-list-media-buttons button {
+    margin: 2px 0 2px 0;
+}
+

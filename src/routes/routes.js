@@ -2,28 +2,25 @@ import React from "react";
 import {
   Route, Switch, Redirect
 } from "react-router-dom";
-import HomePage from "../pages/home";
 import AppStorePage from "../pages/app-store";
 import MyAppsPage from "../pages/my-apps";
 
 
 // Router der App - Die Seiten sind nur erreichbar, wenn der Nutzer eingeloggt ist
-class PrivateRouter extends React.Component {
-  render() {
-      return (
-        <React.Fragment>
-          <Route path="/my-apps">
-            <MyAppsPage />
-          </Route>
-          <Route path="/apps">
-            <AppStorePage />
-          </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-        </React.Fragment>
+function PrivateRouter() {
+  return (
+    <React.Fragment>
+      <Route exact path="/my-apps">
+        <MyAppsPage />
+      </Route>
+      <Route exact path="/apps">
+        <AppStorePage />
+      </Route>
+      <Route path="/">
+        <Redirect to="/my-apps"/>
+      </Route>
+     </React.Fragment>
       );
-  }
 }
 
 function RouterSwitch(props) {
@@ -31,7 +28,7 @@ function RouterSwitch(props) {
     <Switch>
       {props.isLoggedIn  && <PrivateRouter />}
       <Route path="/">
-        <Redirect to="/login"></Redirect>
+        <Redirect to="/login" />
       </Route>
     </Switch>
   );

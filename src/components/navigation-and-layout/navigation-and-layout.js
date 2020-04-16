@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Sidebar, Menu, Icon, Segment } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, Route, Router } from "react-router-dom";
 import RouterSwitch from "../../routes/routes";
 import "./navigation-and-layout.css";
 
@@ -51,67 +51,67 @@ class NavigationAndLayout extends Component {
     const { activeItem, visible, isLoggedIn, isMobile } = this.state;
 
     return (
-      <Sidebar.Pushable as={Segment}>
-        <Sidebar
-          as={Menu}
-          animation="push"
-          // icon="labeled"
-          vertical
-          visible={visible}
-          inverted
-          width="thin"
-        >
-          <Menu.Item header>Hostainer</Menu.Item>
-          <Menu.Item
-            name="meine apps"
-            as={Link}
-            to="/my-apps"
-            active={activeItem === "meine apps"}
-            onClick={this.handleItemClick}
+      <Router>
+        <Sidebar.Pushable as={Segment}>
+          <Sidebar
+            as={Menu}
+            animation="push"
+            // icon="labeled"
+            vertical
+            visible={visible}
+            inverted
+            width="thin"
           >
-            <Icon name="play" />
-            Meine Apps
-          </Menu.Item>
-          <Menu.Item
-            name="app store"
-            as={Link}
-            to="/apps"
-            active={activeItem === "app store"}
-            onClick={this.handleItemClick}
-          >
-            <Icon name="rocket" />
-            App Store
-          </Menu.Item>
-          <div id="nav-bottom">
+            <Menu.Item header>Hostainer</Menu.Item>
             <Menu.Item
-              name="logout"
+              name="meine apps"
               as={Link}
-              to="/logout"
-              active={activeItem === "logout"}
+              to="/my-apps"
+              active={activeItem === "meine apps"}
               onClick={this.handleItemClick}
             >
-              <Icon name="sign-out" />
-              Abmelden
+              <Icon name="play" />
+              Meine Apps
             </Menu.Item>
-          </div>
-        </Sidebar>
-        <Sidebar.Pusher
-          id={visible ? "sidebar-visible" : "sidebar-hidden"}
-        >
-          {isMobile ? (
-            <div id="burger-menu-bar">
-              <div id="burger-menu-button" onClick={this.toggleSidebar()}>
-                <BurgerMenuButton />
-              </div>
+            <Menu.Item
+              name="app store"
+              as={Link}
+              to="/apps"
+              active={activeItem === "app store"}
+              onClick={this.handleItemClick}
+            >
+              <Icon name="rocket" />
+              App Store
+            </Menu.Item>
+            <div id="nav-bottom">
+              <Menu.Item
+                name="logout"
+                as={Link}
+                to="/logout"
+                active={activeItem === "logout"}
+                onClick={this.handleItemClick}
+              >
+                <Icon name="sign-out" />
+                Abmelden
+              </Menu.Item>
             </div>
-          ) : (
-            ""
-          )}
-          <Segment basic>
-            <RouterSwitch isLoggedIn={isLoggedIn} />
-          </Segment>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
+          </Sidebar>
+          <Sidebar.Pusher id={visible ? "sidebar-visible" : "sidebar-hidden"}>
+            {isMobile ? (
+              <div id="burger-menu-bar">
+                <div id="burger-menu-button" onClick={this.toggleSidebar()}>
+                  <BurgerMenuButton />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            <Segment basic>
+              <RouterSwitch isLoggedIn={isLoggedIn} />
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </Router>
     );
   }
 }

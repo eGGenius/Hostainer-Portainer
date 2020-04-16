@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { Sidebar, Menu, Icon, Segment } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import RouterSwitch from "../../routes/routes";
 import "./nav-and-layout.css";
 
@@ -48,61 +48,63 @@ function NavAndLayout () {
     }, []);
 
     return (
+      <Router>
         <Sidebar.Pushable as={Segment}>
-            <Sidebar
-                as={Menu}
-                animation="push"
-                // icon="labeled"
-                vertical
-                visible={visible}
-                inverted
-                width="thin"
+          <Sidebar
+            as={Menu}
+            animation="push"
+            // icon="labeled"
+            vertical
+            visible={visible}
+            inverted
+            width="thin"
+          >
+            <Menu.Item header>Hostainer</Menu.Item>
+            <Menu.Item
+              name="meine apps"
+              as={Link}
+              to="/my-apps"
+              active={activeItem === "meine apps"}
+              onClick={handleItemClick}
             >
-                <Menu.Item header>Hostainer</Menu.Item>
-                <Menu.Item
-                    name="meine apps"
-                    as={Link}
-                    to="/my-apps"
-                    active={activeItem === "meine apps"}
-                    onClick={handleItemClick}
-                >
-                    <Icon name="play" />
-            Meine Apps
-          </Menu.Item>
-                <Menu.Item
-                    name="app store"
-                    as={Link}
-                    to="/apps"
-                    active={activeItem === "app store"}
-                    onClick={handleItemClick}
-                >
-                    <Icon name="rocket" />
-            App Store
-          </Menu.Item>
-                <div id="nav-bottom">
-                    <Menu.Item
-                        name="logout"
-                        as={Link}
-                        to="/logout"
-                        active={activeItem === "logout"}
-                        onClick={handleItemClick}
-                    >
-                        <Icon name="sign-out" />
-              Abmelden
+              <Icon name="play" />
+              Meine Apps
             </Menu.Item>
-                </div>
-            </Sidebar>
-            <Sidebar.Pusher id={sidebarPusherId}>
-                <div id="burger-menu-bar">
-                    <div id="burger-menu-button" onClick={() => setVisible(!visible)}>
-                        <BurgerMenuButton />
-                    </div>
-                </div>
-                <Segment basic>
-                    <RouterSwitch isLoggedIn={isLoggedIn} />
-                </Segment>
-            </Sidebar.Pusher>
+            <Menu.Item
+              name="app store"
+              as={Link}
+              to="/apps"
+              active={activeItem === "app store"}
+              onClick={handleItemClick}
+            >
+              <Icon name="rocket" />
+              App Store
+            </Menu.Item>
+            <div id="nav-bottom">
+              <Menu.Item
+                name="logout"
+                as={Link}
+                to="/logout"
+                active={activeItem === "logout"}
+                onClick={handleItemClick}
+              >
+                <Icon name="sign-out" />
+                Abmelden
+              </Menu.Item>
+            </div>
+          </Sidebar>
+          <Sidebar.Pusher id={sidebarPusherId}>
+            <div id="burger-menu-bar">
+              <div id="burger-menu-button" onClick={() => setVisible(!visible)}>
+                <BurgerMenuButton />
+              </div>
+            </div>
+            <Segment basic>
+              <RouterSwitch isLoggedIn={isLoggedIn} />
+            </Segment>
+          </Sidebar.Pusher>
         </Sidebar.Pushable>
+      </Router>
     );
 }
 
