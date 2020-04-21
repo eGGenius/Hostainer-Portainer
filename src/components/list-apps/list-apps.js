@@ -10,7 +10,7 @@ export default function ListApps() {
   const [items, setItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const jwt = ("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOjEsImV4cCI6MTU4NzQ5OTEyMn0.1ioF6xOHgJMPoI86IeW871j0uTKPfyclBEci5qYe-vQ");
+  const jwt = ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOjEsImV4cCI6MTU4NzUwNTY1MX0.oUV75jasLEbtBb43aDnbwGKwrvOSDmrm6MVLozcox5U");
 
   var myHeaders = new Headers();
   myHeaders.append("Authorization", "Bearer " + jwt);
@@ -26,11 +26,11 @@ export default function ListApps() {
   // similar to componentDidMount()
   useEffect(() => {
     // fetch("http://141.72.191.81:9000/api/templates", requestOptions)
-    fetch("http://192.168.0.55:3001/api/templates", requestOptions)
+    fetch("/api/templates", requestOptions)
       .then(res => res.json())
       .then((result) => {
         setIsLoaded(true);
-        setItems(result.items);
+        setItems(result);
       },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
