@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, FormGroup, Form } from "react-bootstrap";
 import { useHistory, useLocation, Redirect } from "react-router-dom";
 import { authService } from "../services/authentication.service";
+import "./login.css";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -22,28 +23,44 @@ export default function LoginPage() {
     (<Redirect to={from} /> ) 
     : 
     ( 
-      <Container>
-        <form onSubmit={(e) => {
-          login(e);
-        }}>
-          <label>username</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          
-          <label>password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button block type="submit">Login</Button>
-        </form>
-      </Container>
+      <div id="auth-page">
+        <div id="auth-wrapper">
+          <div id="auth-inner">
+            <h3>Hostainer - Login</h3>
+            <Form onSubmit={(e) => {
+              login(e);
+            }}>
+          {/* <form onSubmit={(e) => {
+            login(e);
+          }}> */}
+            <Form.Group>
+                <Form.Label>Benutzername</Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                size="sm"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
+            
+            <Form.Group>
+                <Form.Label>Passwort</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                size="sm"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+                </Form.Group>  
+              <Button size="sm" block type="submit">Login</Button>
+            
+          {/* </form> */}
+          </Form>
+          </div>
+        </div>
+      </div>
     )
   );
 }
