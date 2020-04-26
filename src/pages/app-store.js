@@ -5,10 +5,10 @@ import ListApps from "../components/list-apps/list-apps"
 class AppStorePage extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div class="site-content">
         <SearchAndFilterBar />
         <ListApps />
-      </React.Fragment>
+      </div>
     );
   }
 }

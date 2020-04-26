@@ -26,41 +26,29 @@ export default function NavAndLayout() {
     <Router>
       <div>
         <NavBar />
-        <Container fluid id="site-content">
-          <Switch>
-            <PrivateRoute
-              exact
-              path="/my-apps"
-            >
-              <MyAppsPage />
-            </PrivateRoute>
-            <PrivateRoute
-              exact
-              path="/apps"
-            >
-              <AppStorePage />
-            </PrivateRoute>
-            {/* Public Route */}
-            <Route path="/login">
-              <LoginPage />
-            </Route>
-            <PrivateRoute
-              exact path="/"
-            >
-              <Redirect to="/my-apps" />
-            </PrivateRoute>
-            <PrivateRoute
-              path="/"
-            >
-              {/* ToDo: Page Not Found */}
-              <Redirect to="/" />
-            </PrivateRoute>
-            {/* <PrivateRoute
+        <Switch>
+          <PrivateRoute exact path="/my-apps">
+            <MyAppsPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/apps">
+            <AppStorePage />
+          </PrivateRoute>
+          {/* Public Route */}
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <PrivateRoute exact path="/">
+            <Redirect to="/my-apps" />
+          </PrivateRoute>
+          <PrivateRoute path="/">
+            {/* ToDo: Page Not Found */}
+            <Redirect to="/" />
+          </PrivateRoute>
+          {/* <PrivateRoute
               path="/"
               component={PageNotFound}
             /> */}
-          </Switch>
-        </Container>
+        </Switch>
       </div>
     </Router>
   );

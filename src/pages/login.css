@@ -1,16 +1,11 @@
-#site-content {
-    padding: 0!important;
-    /* Übergangslösung - Muss noch verbessert werden */
-}
 #auth-page {
     background-color: #007BFF;
     width: 100vw;
     height: 100vh;
-    padding: 10vh 20vw 10vh 20vw;
+    padding: 15vh 20vw 15vh 20vw;
 }
 
 #auth-wrapper {
-    height: 80vh;
     width: 60vw;
     background-color: #FFFFFF;
     border: 0.3px solid lightgray;
