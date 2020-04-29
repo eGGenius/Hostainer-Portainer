@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Media from "react-bootstrap/Media";
-import { Row, Col, Container, ButtonGroup } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "./list-apps.css";
 
 export default function ListApps() {
@@ -46,7 +45,8 @@ export default function ListApps() {
   } else {
     return (
         items.map(item => (
-          <Media className="app-list-item">
+          <Media className="app-list-item" as="a" href={"/apps/" + item.Id} >
+          {/* <Media className="app-list-item" as="Link" to={"/apps/" + item.Id} > */}
             <img
               width={64}
               height={64}
@@ -56,12 +56,12 @@ export default function ListApps() {
             />
             <Media.Body className="app-list-media-body">
               <Container fluid>
-                <Row>
-                  <Col sm={10}>
+                {/* <Row> */}
+                  {/* <Col sm={10}> */}
                     <h5>{item.title}</h5>
                     <p className="app-list-item-description">{item.description}</p>
-                  </Col>
-                  <Col sm={2}>
+                  {/* </Col> */}
+                  {/* <Col sm={2}>
                     <ButtonGroup
                       vertical
                       size="sm"
@@ -75,8 +75,8 @@ export default function ListApps() {
                         Get App
                       </Button>
                     </ButtonGroup>
-                  </Col>
-                </Row>
+                  </Col> */}
+                {/* </Row> */}
               </Container>
             </Media.Body>
           </Media>

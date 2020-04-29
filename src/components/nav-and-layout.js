@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
 import {
   BrowserRouter as Router,
   Link,
@@ -11,13 +10,13 @@ import {
 import LoginPage from "../pages/login";
 import AppStorePage from "../pages/app-store";
 import MyAppsPage from "../pages/my-apps";
+import ShowAppPage from "../pages/show-app.js";
 import "./nav-and-layout.css";
 import { 
   useHistory, 
   // useLocation 
 } from "react-router-dom";
 import { authService } from "../services/authentication.service";
-
 
 // Navigations-Sidebar und Container für die Seiteninhalte
 // angezeigte Inhalte werden über Router gesteuert
@@ -33,6 +32,7 @@ export default function NavAndLayout() {
           <PrivateRoute exact path="/apps">
             <AppStorePage />
           </PrivateRoute>
+          <Route path={"/apps/:templateId"} component={ShowAppPage} />
           {/* Public Route */}
           <Route path="/login">
             <LoginPage />
