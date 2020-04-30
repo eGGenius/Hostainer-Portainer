@@ -36,7 +36,8 @@ export default function ListApps() {
 					setError(error);
         }
       );
-  }, [requestOptions]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
