@@ -1,17 +1,23 @@
 #auth-page {
-    background-color: #007BFF;
+    background-color: #0a2133;
     width: 100vw;
     height: 100vh;
-    padding: 15vh 20vw 15vh 20vw;
+    padding: 15vh 30vw 15vh 30vw;
 }
 
 #auth-wrapper {
-    width: 60vw;
-    background-color: #FFFFFF;
+    width: 40vw;
+    background-color: #ffffff;
     border: 0.3px solid lightgray;
     border-radius: 1rem;
 }
 
 #auth-inner {
     padding: 1.8rem;
+}
+
+#auth-inner-logo{
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }

@@ -26,7 +26,7 @@ export default function LoginPage() {
       <div id="auth-page">
         <div id="auth-wrapper">
           <div id="auth-inner">
-            <h3>Hostainer - Login</h3>
+            <img id="auth-inner-logo" src="logo.png"></img>
             <Form onSubmit={(e) => {
               login(e);
             }}>
@@ -34,8 +34,8 @@ export default function LoginPage() {
             login(e);
           }}> */}
             <Form.Group>
-                <Form.Label>Benutzername</Form.Label>
               <Form.Control
+                placeholder="Benutzername"
                 type="text"
                 name="username"
                 size="sm"
@@ -45,8 +45,8 @@ export default function LoginPage() {
             </Form.Group>
             
             <Form.Group>
-                <Form.Label>Passwort</Form.Label>
               <Form.Control
+                placeholder="Passwort"
                 type="password"
                 name="password"
                 size="sm"
