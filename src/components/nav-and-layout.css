@@ -1,3 +1,25 @@
+.nav-item {
+  background-color: white;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
 .site-content {
   padding: 1rem 2rem 1rem 2rem;
+}
+
+
+#test {
+  color: white;
+}
+
+#navbar {
+  background-color: #0a2133;
+}
+
+#nav-bar-img {
+  height: 40px;
+  border-radius: 10px;
 }

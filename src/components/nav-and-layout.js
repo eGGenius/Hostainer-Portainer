@@ -58,7 +58,7 @@ const NavBar = () => {
   let history = useHistory();
   return (
     authService.isLoggedIn() ? (
-    <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
+    <Navbar id="navbar" collapseOnSelect expand="md">
       {/* <img
             alt=""
             src="/logo.svg"
@@ -66,12 +66,12 @@ const NavBar = () => {
             height="30"
             className="d-inline-block align-top"
           />{" "} */}
-      <Navbar.Brand>Hostainer</Navbar.Brand>
+      <Navbar.Brand><img id="nav-bar-img" src="logo.png"></img></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/my-apps">
+            <Link id="nav-item-1" className="nav-link" to="/my-apps">
               Meine Apps
             </Link>
           </li>
