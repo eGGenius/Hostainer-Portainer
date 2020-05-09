@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import containerService from "../services/container.service";
+import { Container, Button } from "react-bootstrap";
 
 function ShowAppPage(props) {
     const { match: { params } } = props;
     const [template, setTemplate] = useState([]);
 
     useEffect(() => {
-        containerService.showContainer(params.templateId).then(response => {
+        containerService.showTemplate(params.templateId).then(response => {
             setTemplate(response.data);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -14,11 +15,11 @@ function ShowAppPage(props) {
 
     
     return (
-        <div className="site-content">
+        <Container className="site-content">
             <h1>{template.title}</h1>
             <p>{template.description}</p>
-            <button>Deploy</button>
-        </div>
+            <Button>Deploy</Button>
+        </Container>
     )
 }
 

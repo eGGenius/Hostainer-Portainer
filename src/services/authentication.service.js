@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const authService = {
   isLoggedIn() {
+    // ToDo -> Authentifizierung immer prüfen, ansonsten kann einfach irgendein jwt / username eingetragen werden, um auf die Seite zuzugreifen
     const jwt = localStorage.getItem("jwt");
     const username = localStorage.getItem("username");
     if(jwt && username) {

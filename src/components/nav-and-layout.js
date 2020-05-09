@@ -23,7 +23,6 @@ import { authService } from "../services/authentication.service";
 export default function NavAndLayout() {
   return (
     <Router>
-      <div>
         <NavBar />
         <Switch>
           <PrivateRoute exact path="/my-apps">
@@ -49,7 +48,6 @@ export default function NavAndLayout() {
               component={PageNotFound}
             /> */}
         </Switch>
-      </div>
     </Router>
   );
 }
@@ -58,15 +56,8 @@ const NavBar = () => {
   let history = useHistory();
   return (
     authService.isLoggedIn() ? (
-    <Navbar id="navbar" collapseOnSelect expand="md">
-      {/* <img
-            alt=""
-            src="/logo.svg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{" "} */}
-      <Navbar.Brand><img id="nav-bar-img" src="../logo.png"></img></Navbar.Brand>
+    <Navbar variant="dark" fixed="top" collapseOnSelect expand="md">
+        <img id="nav-bar-img" src="../logo.png" alt="Logo" onClick={() => {history.push("/my-apps")}}/>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -82,9 +73,10 @@ const NavBar = () => {
           </li>
         </Nav>
         <Nav>
+            <li className="nav-item"><p>Sie sind eingeloggt als <b>{localStorage.getItem("username")}</b></p></li>
           <li className="nav-item">
-            <Link className="nav-link" to="/" onClick={() => {
-              authService.logout(() => history.push("/"));
+            <Link className="nav-link" onClick={() => {
+              authService.logout(() => history.push("/login"));
             }}>
               Logout
             </Link>

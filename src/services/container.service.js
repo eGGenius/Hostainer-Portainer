@@ -7,9 +7,6 @@ let config = {
     headers: authHeader()
 }
 
-
-
-
 // Export der Template Services 
 export const containerService = {
     // Container Service (CRUD)
@@ -18,17 +15,26 @@ export const containerService = {
         // axios.post('/api//')
     },
     // READ -> Show Template -> GET
-    showContainer(id) {
+    showTemplate(id) {
         const url = '/api/templates/' + id;
         return axios.get(url, config)
-    },
+    },   
     // UPDATE -> Update Template -> PUT
-    updateContainer() {
-
+    updateApp() {
+        // ToDo
     },
     // DELETE -> Delete Template
-    removeContainer() {
-
+    removeApp() {
+        // ToDo
+    },
+    listContainerTemplates() {
+        const url = "/api/templates";
+        return(axios.get(url,config));
+    },
+    listPrivateApps() {
+        // "1" ist noch nicht dynamisch -> evtl später zu ändern
+        const url = "/api/endpoints/1/docker/containers/json";
+        return(axios.get(url,config));
     }
 }
 export default containerService;

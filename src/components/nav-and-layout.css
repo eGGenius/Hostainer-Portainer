@@ -1,26 +1,46 @@
-.nav-item {
-  background-color: white;
-  border-radius: 6px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-
-.site-content {
-  padding: 1rem 2rem 1rem 2rem;
-}
-
-
-#test {
-  color: white;
-}
-
-#navbar {
+.navbar {
   background-color: #0a2133;
 }
 
 #nav-bar-img {
   height: 40px;
   border-radius: 10px;
+  border-right: 20px;
+}
+
+#nav-bar-img:hover {
+  cursor: pointer;
+}
+
+.nav-item {
+  margin: auto;
+  font-size: 16px;
+}
+
+a.nav-link {
+  color: white!important;
+  font-size: 1rem;
+}
+
+a#nav-item-1.nav-link {
+  margin-left: 1rem;
+}
+
+a.nav-link {
+  border-left: 1px solid rgba(255, 255, 255, 0.294);
+}
+
+a.nav-link:hover {
+  color: rgba(255,255,255,.5)!important;
+}
+
+li.nav-item p {
+  color: white!important;
+  margin: auto;
+  margin-right: 1rem; 
+  font-size: 0.9rem;
+}
+
+.site-content {
+  margin-top: 4.5rem!important;
 }

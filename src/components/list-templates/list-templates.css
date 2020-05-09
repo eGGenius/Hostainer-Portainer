@@ -1,13 +1,17 @@
 .app-list-item {
-    border: 1px solid #9d9da5;
+    border: 1px solid #ceced3;
     border-radius: 0.4rem;
-    padding-left: 1rem;
-    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    margin-bottom: 0.4rem;
     color: black;
+}
+.app-list-item:hover {
+    cursor: pointer;
+    background-color: #0a21331c;
 }
 
 .app-list-media-body {
-    border-left: 1px solid #9d9da5;
+    border-left: 1px solid #ceced3;
     padding: 1rem 0 1rem 0;
 }
 
@@ -25,3 +29,9 @@
     margin: 2px 0 2px 0;
 }
 
+a.app-list-item.media:hover {
+    text-decoration: none;
+    background-color: #0a21331c;
+    color: black;
+    cursor: pointer;
+}

@@ -26,7 +26,7 @@ export default function LoginPage() {
       <div id="auth-page">
         <div id="auth-wrapper">
           <div id="auth-inner">
-            <img id="auth-inner-logo" src="logo.png"></img>
+            <img id="auth-inner-logo" src="logo.png" alt="Logo"></img>
             <Form onSubmit={(e) => {
               login(e);
             }}>

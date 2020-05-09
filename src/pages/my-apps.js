@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import ListMyApps from "../components/list-my-apps/list-my-apps";
 
 class MyAppsPage extends Component {
   render() {
     return (
-      <div className="site-content">
-        <h1>My Apps</h1>
-      </div>
+      <Container className="site-content">
+        <ListMyApps />
+      </Container>
     )
   }
 }

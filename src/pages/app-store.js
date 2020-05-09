@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import SearchAndFilterBar from "../components/app-search-filter/app-search-filter"
-import ListApps from "../components/list-apps/list-apps"
+import ListAppTemplates from "../components/list-templates/list-templates"
+import { Container } from "react-bootstrap";
 
 class AppStorePage extends Component {
   render() {
     return (
-      <div class="site-content">
+      <Container className="site-content">
         <SearchAndFilterBar />
-        <ListApps />
-      </div>
+        <ListAppTemplates />
+      </Container>
     );
   }
 }
