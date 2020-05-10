@@ -75,8 +75,8 @@ const NavBar = () => {
         <Nav>
             <li className="nav-item"><p>Sie sind eingeloggt als <b>{localStorage.getItem("username")}</b></p></li>
           <li className="nav-item">
-            <Link className="nav-link" onClick={() => {
-              authService.logout(() => history.push("/login"));
+            <Link className="nav-link" to="/login" onClick={() => {
+              authService.logout();
             }}>
               Logout
             </Link>

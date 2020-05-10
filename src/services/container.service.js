@@ -11,8 +11,49 @@ let config = {
 export const containerService = {
     // Container Service (CRUD)
     // CREATE -> Deploy Container -> POST
-    deployContainer(template, givenName) {
-        // axios.post('/api//')
+    deployContainer(givenName, imageName, exposedPorts) {
+        const url = '/api/endpoints/1/docker/containers/create';
+
+        console.log("Name: " + givenName + " Image-Name: " + imageName+ " exposedPorts: " + exposedPorts)
+        console.log(exposedPorts);
+        const params = [
+            {
+                "name": givenName
+            }
+        ];
+        
+        const body = [
+                {
+                "Image": imageName,
+                "ExposedPorts": {
+                    exposedPorts
+                },
+                "HostConfig": {
+                    "PortBindings": {
+                        exposedPorts
+                    }
+                }
+            }
+        ]
+
+        const test = [
+            {
+                "Image": "nginx:latest",
+                "ExposedPorts": {
+                    "80/tcp": { }
+                },
+                "HostConfig": {
+                    "PortBindings": {
+                        "80/tcp": [{ "HostPort": "" }]
+                    }
+                }
+            }
+        ]
+        console.log(params);
+        console.log(body);
+        console.log(test);
+
+        // return (axios.post(url, test, config));
     },
     // READ -> Show Template -> GET
     showTemplate(id) {

@@ -1,0 +1,25 @@
+.show-app-template-container {
+    border: 1px solid #0a2133;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.img-thumbnail {
+    max-height: 85%;
+    height: auto;
+}
+
+.show-template-properties {
+    border-top: 1px solid #0a2133;
+    border-bottom: 1px solid #0a2133;
+    padding: 1rem 0 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.show-template-properties-table {
+    margin-bottom: 0;
+}
+
+.deploy-container-form {
+    margin-top: 1rem;
+}

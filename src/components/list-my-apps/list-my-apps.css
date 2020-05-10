@@ -1,3 +1,9 @@
 .display-state-button:hover {
     cursor: default;
 }
+
+.open-app-button {
+    background-color: #0a2133;
+    border-color: #0a2133;
+    margin-right: 5px;
+}

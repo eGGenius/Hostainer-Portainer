@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./list-my-apps.css";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Badge } from "react-bootstrap";
 import containerService from "../../services/container.service";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,6 @@ export default function ListMyApps() {
                     </tr>
                 </thead>
                 <tbody>
-
                     {myApps.map(app => (
                         <tr>
                             <td>{sliceName(app.Names[0])}</td>
@@ -43,12 +42,10 @@ export default function ListMyApps() {
                             {/* Starting, Running, Stopped */}
                             <td>{displayContainerState(app.State)}</td>
                             <td>
-                                <ul>
                                     {app.Ports.map(port => (
                                         // ToDo: URL ändern
-                                        <li><a href={"http://localhost:" + port.PublicPort}> {port.PublicPort}</a></li>
+                                        <Button size="sm" className="open-app-button" as="a" href={"http://localhost:" + port.PublicPort} target="_blank" rel="noopener noreferrer">{port.PublicPort}</Button>
                                     ))}
-                                </ul>
                             </td>
                         </tr>
                     ))}
@@ -74,12 +71,13 @@ const displayContainerState = (state) => {
     // ToDo: Hover-Effekt der Buttons deaktivieren
     if (state === "starting") {
         // gelb
-        return <Button className="display-state-button" disabled variant="warning">App startet...</Button>
+        // return <Button className="display-state-button" disabled variant="warning">App startet...</Button>
+        return <Badge variant="warning">App startet...</Badge>
     } else if (state === "running") {
         // grün
-        return <Button className="display-state-button" disabled variant="success">App läuft</Button>
+        return <Badge variant="success">App läuft</Badge>
     } else if (state === "stopped") {
         // rot
-        return <Button className="display-state-button" disabled variant="danger">App gestoppt</Button>
+        return <Badge variant="danger">App gestoppt</Badge>
     }
 }
