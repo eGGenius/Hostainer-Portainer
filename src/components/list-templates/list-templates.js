@@ -15,8 +15,12 @@ export default function ListAppTemplates() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    containerService.listContainerTemplates().then(response => {
+    containerService.listContainerTemplates()
+    .then(response => {
       setItems(response.data);
+    })
+    .catch(error => {
+      console.log(error);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
