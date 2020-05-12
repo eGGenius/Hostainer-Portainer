@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory, useLocation, Redirect } from "react-router-dom";
-import { authService } from "../services/authentication.service";
+import { authService } from "../../services/authentication.service";
 import "./login.css";
 
 export default function LoginPage() {
@@ -30,33 +30,28 @@ export default function LoginPage() {
             <Form onSubmit={(e) => {
               login(e);
             }}>
-          {/* <form onSubmit={(e) => {
-            login(e);
-          }}> */}
-            <Form.Group>
-              <Form.Control
-                placeholder="Benutzername"
-                type="text"
-                name="username"
-                size="sm"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </Form.Group>
-            
-            <Form.Group>
-              <Form.Control
-                placeholder="Passwort"
-                type="password"
-                name="password"
-                size="sm"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-                </Form.Group>  
+              <Form.Group>
+                <Form.Control
+                  placeholder="Benutzername"
+                  type="text"
+                  name="username"
+                  size="sm"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Form.Group>
+              
+              <Form.Group>
+                <Form.Control
+                  placeholder="Passwort"
+                  type="password"
+                  name="password"
+                  size="sm"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>  
               <Button size="sm" block type="submit">Login</Button>
-            
-          {/* </form> */}
           </Form>
           </div>
         </div>

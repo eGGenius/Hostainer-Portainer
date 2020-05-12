@@ -32,7 +32,7 @@ export default function ListAppTemplates() {
   // } else {
   return (
     items.map(item => (
-        <Media className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
+        <Media key={item.Id} className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
         <img
           width={64}
           height={64}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import containerService from "../services/container.service";
-import { Container, Button, Row, Col, Image, Table, Form, InputGroup } from "react-bootstrap";
-import DeployContainerForm from "../components/deploy-container-form";
+import containerService from "../../services/container.service";
+import { Container, Row, Col, Image, Table } from "react-bootstrap";
+import DeployContainerForm from "./deploy-container-form";
 import "./show-app.css";
 
 function ShowAppPage(props) {
@@ -52,7 +52,5 @@ function ShowAppPage(props) {
         </Container>
     )
 }
-
-
 
 export default ShowAppPage;

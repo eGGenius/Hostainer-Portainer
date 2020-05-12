@@ -11,11 +11,22 @@ export default function ListMyApps() {
     const [myApps, setMyApps] = useState([]);
 
     useEffect(() => {
-        containerService.listPrivateApps().then(response => {
+        containerService.listPrivateApps()
+        .then(response => {
             setMyApps(response.data);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+
+    const getURL = (privatePort, publicPort) => {
+        const url = window.location;
+        const hostname = url.hostname;
+        // ToDo: Protokoll abhängig vom "internen" Port machen -> z.B. Port 80: HTTP & Port 443 HTTPS
+        const protocol = url.protocol;
+        const hrefString = protocol + '//' + hostname + ':' + publicPort;
+        return hrefString;
+    }
 
     // if (error) {
     //     return <div>Error: {error.message}</div>;
@@ -36,7 +47,7 @@ export default function ListMyApps() {
                 </thead>
                 <tbody>
                     {myApps.map(app => (
-                        <tr>
+                        <tr key={app.Id}>
                             <td>{sliceName(app.Names[0])}</td>
                             <td>{app.Image}</td>
                             {/* Starting, Running, Stopped */}
@@ -44,7 +55,7 @@ export default function ListMyApps() {
                             <td>
                                     {app.Ports.map(port => (
                                         // ToDo: URL ändern
-                                        <Button size="sm" className="open-app-button" as="a" href={"http://localhost:" + port.PublicPort} target="_blank" rel="noopener noreferrer">{port.PublicPort}</Button>
+                                        <Button key={port.PublicPort} size="sm" className="open-app-button" as="a" href={getURL(port.PrivatePort, port.PublicPort)} target="_blank" rel="noopener noreferrer">{port.PublicPort}</Button>
                                     ))}
                             </td>
                         </tr>
@@ -68,16 +79,22 @@ const sliceName = (appName) => {
 }
 
 const displayContainerState = (state) => {
-    // ToDo: Hover-Effekt der Buttons deaktivieren
-    if (state === "starting") {
-        // gelb
-        // return <Button className="display-state-button" disabled variant="warning">App startet...</Button>
-        return <Badge variant="warning">App startet...</Badge>
-    } else if (state === "running") {
-        // grün
-        return <Badge variant="success">App läuft</Badge>
-    } else if (state === "stopped") {
-        // rot
-        return <Badge variant="danger">App gestoppt</Badge>
+    switch(state) {
+        case "created":
+            return <Badge variant="warning">App startet...</Badge>
+        case "restarting":
+            return <Badge>App startet...</Badge>
+        case "running":
+            return <Badge variant="success">App läuft</Badge>
+        case "removing":
+            return "";
+        case "paused":
+            return "";
+        case "exited":
+            return <Badge variant="danger">App gestoppt</Badge>
+        case "dead":
+            return "";
+        default:
+            return "";
     }
 }

@@ -43,28 +43,22 @@ export const containerService = {
         let deployContainerConfig = config;
         deployContainerConfig.params = params;
         
-        axios.post(url, data, deployContainerConfig)
+        return axios.post(url, data, deployContainerConfig);
+    },
+    // Start a container
+    startContainer(id) {
+        const url = '/api/endpoints/1/docker/containers/' + id + '/start';
+        const data = '';
+        console.log("Versuche Container zu starten...");
+        const startContainerConfig = {headers: authHeader()};
+        axios.post(url, data, startContainerConfig)
         .then((response) => {
             console.log(response);
-            // this.startContainer(response.data.Id);
         })
         .catch((error) => {
             console.log(error);
         });
     },
-    // Start a container
-    // startContainer(id) {
-    //     const url = '/api/endpoints/1/docker/containers/' + id + '/start';
-    //     console.log(url);
-    //     const startContainerConfig = {headers: authHeader()};
-    //     axios.post(url, startContainerConfig)
-    //     .then((response) => {
-    //         console.log(response);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     });
-    // },
     // READ -> Show Template -> GET
     showTemplate(id) {
         const url = '/api/templates/' + id;
@@ -84,7 +78,7 @@ export const containerService = {
     },
     listPrivateApps() {
         // "1" ist noch nicht dynamisch -> evtl später zu ändern
-        const url = "/api/endpoints/1/docker/containers/json";
+        const url = "/api/endpoints/1/docker/containers/json?all=true";
         return(axios.get(url,config));
     }
 }

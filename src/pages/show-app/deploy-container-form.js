@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import containerService from "../services/container.service";
+import containerService from "../../services/container.service";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 export default function DeployContainerForm(props) {
@@ -7,7 +7,14 @@ export default function DeployContainerForm(props) {
     const template = props.template;
     
     const handleSubmit = (e) => {
-        containerService.deployContainer(name, template.image, template.ports);
+        containerService.deployContainer(name, template.image, template.ports)
+        .then((response) => {
+                    console.log(response);
+                    containerService.startContainer(response.data.Id);
+                })
+        .catch((error) => {
+            console.log(error);
+        });
         e.preventDefault();
     }
 
@@ -28,7 +35,9 @@ export default function DeployContainerForm(props) {
                     />
                 </InputGroup>
             </Form.Row>
-            <Button type="submit" value="Submit">Installieren</Button>
+            <Form.Row>
+                <Button block type="submit">Installieren</Button>
+            </Form.Row>
         </Form>
     )
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SearchAndFilterBar from "../components/app-search-filter/app-search-filter"
-import ListAppTemplates from "../components/list-templates/list-templates"
+import SearchAndFilterBar from "../../components/app-search-filter/app-search-filter"
+import ListAppTemplates from "./list-templates"
 import { Container } from "react-bootstrap";
 
 class AppStorePage extends Component {
