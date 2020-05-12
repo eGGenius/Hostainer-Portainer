@@ -1,0 +1,656 @@
+[
+  {
+      "Id": 1,
+      "type": 1,
+      "title": "MySQL",
+      "description": "The most popular open-source database",
+      "administrator_only": false,
+      "image": "mysql:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mysql.png",
+      "env": [
+          {
+              "name": "MYSQL_ROOT_PASSWORD",
+              "label": "Root password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/mysql"
+          }
+      ],
+      "ports": [
+          "3306/tcp"
+      ]
+  },
+  {
+      "Id": 2,
+      "type": 1,
+      "title": "Kasmweb Desktop",
+      "description": "Kasm is a Desktop and Application Isolation platform. It allows users to create on-demand, disposable, web-accessible environments to safely and securely do work - building a Chasm between the users and web born threats.",
+      "administrator_only": false,
+      "image": "kasmweb/desktop:1.6.1",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://www.kasmweb.com/img/kasm_preview_logo.png",
+      "note": "default password: vncpassword",
+      "platform": "linux",
+      "categories": [
+          "desktop"
+      ]
+  },
+  {
+      "Id": 3,
+      "type": 1,
+      "title": "MariaDB",
+      "description": "Performance beyond MySQL",
+      "administrator_only": false,
+      "image": "mariadb:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mariadb.png",
+      "env": [
+          {
+              "name": "MYSQL_ROOT_PASSWORD",
+              "label": "Root password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/mysql"
+          }
+      ],
+      "ports": [
+          "3306/tcp"
+      ]
+  },
+  {
+      "Id": 4,
+      "type": 1,
+      "title": "PostgreSQL",
+      "description": "The most advanced open-source database",
+      "administrator_only": false,
+      "image": "postgres:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/postgres.png",
+      "env": [
+          {
+              "name": "POSTGRES_USER",
+              "label": "Superuser"
+          },
+          {
+              "name": "POSTGRES_PASSWORD",
+              "label": "Superuser password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/postgresql/data"
+          }
+      ],
+      "ports": [
+          "5432/tcp"
+      ]
+  },
+  {
+      "Id": 5,
+      "type": 1,
+      "title": "Mongo",
+      "description": "Open-source document-oriented database",
+      "administrator_only": false,
+      "image": "mongo:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mongo.png",
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "volumes": [
+          {
+              "container": "/data/db"
+          }
+      ],
+      "ports": [
+          "27017/tcp"
+      ]
+  },
+  {
+      "Id": 6,
+      "type": 1,
+      "title": "Gitlab CE",
+      "description": "Open-source end-to-end software development platform",
+      "administrator_only": false,
+      "image": "gitlab/gitlab-ce:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
+      "note": "Default username is root",
+      "platform": "linux",
+      "categories": [
+          "development",
+          "project-management"
+      ],
+      "volumes": [
+          {
+              "container": "/etc/gitlab"
+          },
+          {
+              "container": "/var/log/gitlab"
+          },
+          {
+              "container": "/var/opt/gitlab"
+          }
+      ],
+      "ports": [
+          "80/tcp",
+          "443/tcp",
+          "22/tcp"
+      ]
+  },
+  {
+      "Id": 7,
+      "type": 1,
+      "title": "SQL Server",
+      "description": "Microsoft SQL Server on Linux",
+      "administrator_only": false,
+      "image": "microsoft/mssql-server-linux:2017-GA",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "env": [
+          {
+              "name": "ACCEPT_EULA"
+          },
+          {
+              "name": "SA_PASSWORD",
+              "label": "SA password"
+          }
+      ],
+      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "ports": [
+          "1433/tcp"
+      ]
+  },
+  {
+      "Id": 8,
+      "type": 1,
+      "title": "Solr",
+      "description": "Open-source enterprise search platform",
+      "administrator_only": false,
+      "image": "solr:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/solr.png",
+      "platform": "linux",
+      "categories": [
+          "search-engine"
+      ],
+      "volumes": [
+          {
+              "container": "/opt/solr/mydata"
+          }
+      ],
+      "ports": [
+          "8983/tcp"
+      ]
+  },
+  {
+      "Id": 9,
+      "type": 1,
+      "title": "Redis",
+      "description": "Open-source in-memory data structure store",
+      "administrator_only": false,
+      "image": "redis:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
+      "platform": "linux",
+      "categories": [
+          "database"
+      ],
+      "volumes": [
+          {
+              "container": "/data"
+          }
+      ],
+      "ports": [
+          "6379/tcp"
+      ]
+  },
+  {
+      "Id": 10,
+      "type": 1,
+      "title": "RabbitMQ",
+      "description": "Highly reliable enterprise messaging system",
+      "administrator_only": false,
+      "image": "rabbitmq:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/rabbitmq.png",
+      "platform": "linux",
+      "categories": [
+          "messaging"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/rabbitmq"
+          }
+      ],
+      "ports": [
+          "5671/tcp",
+          "5672/tcp"
+      ]
+  },
+  {
+      "Id": 11,
+      "type": 1,
+      "title": "Ghost",
+      "description": "Free and open-source blogging platform",
+      "administrator_only": false,
+      "image": "ghost:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
+      "platform": "linux",
+      "categories": [
+          "blog"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/ghost/content"
+          }
+      ],
+      "ports": [
+          "2368/tcp"
+      ]
+  },
+  {
+      "Id": 12,
+      "type": 1,
+      "title": "WordPress",
+      "description": "A free and open-source CMS",
+      "administrator_only": false,
+      "image": "wordpress:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+      "env": [
+          {
+              "name": "WORDPRESS_DB_HOST",
+              "label": "MySQL database host"
+          },
+          {
+              "name": "WORDPRESS_DB_PASSWORD",
+              "label": "Database password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "CMS"
+      ],
+      "volumes": [
+          {
+              "container": "/var/www/html"
+          }
+      ],
+      "ports": [
+          "80/tcp"
+      ]
+  },
+  {
+      "Id": 13,
+      "type": 1,
+      "title": "Joomla",
+      "description": "Another free and open-source CMS",
+      "administrator_only": false,
+      "image": "joomla:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
+      "env": [
+          {
+              "name": "JOOMLA_DB_HOST",
+              "label": "MySQL database host"
+          },
+          {
+              "name": "JOOMLA_DB_PASSWORD",
+              "label": "Database password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "CMS"
+      ],
+      "volumes": [
+          {
+              "container": "/var/www/html"
+          }
+      ],
+      "ports": [
+          "80/tcp"
+      ]
+  },
+  {
+      "Id": 14,
+      "type": 1,
+      "title": "Drupal",
+      "description": "Open-source content management framework",
+      "administrator_only": false,
+      "image": "drupal:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
+      "platform": "linux",
+      "categories": [
+          "CMS"
+      ],
+      "volumes": [
+          {
+              "container": "/var/www/html"
+          }
+      ],
+      "ports": [
+          "80/tcp"
+      ]
+  },
+  {
+      "Id": 15,
+      "type": 1,
+      "title": "Plone",
+      "description": "A free and open-source CMS built on top of Zope",
+      "administrator_only": false,
+      "image": "plone:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
+      "platform": "linux",
+      "categories": [
+          "CMS"
+      ],
+      "volumes": [
+          {
+              "container": ""
+          }
+      ],
+      "ports": [
+          "8080/tcp"
+      ]
+  },
+  {
+      "Id": 16,
+      "type": 1,
+      "title": "Magento 2",
+      "description": "Open-source e-commerce platform",
+      "administrator_only": false,
+      "image": "alankent/gsd:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/magento.png",
+      "platform": "linux",
+      "categories": [
+          "CMS"
+      ],
+      "volumes": [
+          {
+              "container": "/var/www/html/"
+          }
+      ],
+      "ports": [
+          "80/tcp",
+          "3000/tcp",
+          "3001/tcp"
+      ]
+  },
+  {
+      "Id": 17,
+      "type": 1,
+      "title": "Mautic",
+      "description": "Open-source marketing automation platform",
+      "administrator_only": false,
+      "image": "mautic/mautic:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mautic.png",
+      "env": [
+          {
+              "name": "MAUTIC_DB_HOST",
+              "label": "MySQL database host"
+          },
+          {
+              "name": "MAUTIC_DB_PASSWORD",
+              "label": "Database password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "marketing"
+      ],
+      "volumes": [
+          {
+              "container": "/var/www/html"
+          }
+      ],
+      "ports": [
+          "80/tcp"
+      ]
+  },
+  {
+      "Id": 18,
+      "type": 1,
+      "title": "Wowza",
+      "description": "Streaming media server",
+      "administrator_only": false,
+      "image": "sameersbn/wowza:4.1.2-8",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wowza.png",
+      "env": [
+          {
+              "name": "WOWZA_ACCEPT_LICENSE",
+              "label": "Agree to Wowza EULA"
+          },
+          {
+              "name": "WOWZA_KEY",
+              "label": "License key"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "streaming"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/wowza"
+          }
+      ],
+      "ports": [
+          "1935/tcp",
+          "8086/tcp",
+          "8087/tcp",
+          "8088/tcp"
+      ]
+  },
+  {
+      "Id": 19,
+      "type": 1,
+      "title": "Jenkins",
+      "description": "Open-source continuous integration tool",
+      "administrator_only": false,
+      "image": "jenkins/jenkins:lts",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/jenkins.png",
+      "env": [
+          {
+              "name": "JENKINS_OPTS",
+              "label": "Jenkins options"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "continuous-integration"
+      ],
+      "volumes": [
+          {
+              "container": ""
+          }
+      ],
+      "ports": [
+          "8080/tcp",
+          "50000/tcp"
+      ]
+  },
+  {
+      "Id": 20,
+      "type": 1,
+      "title": "Redmine",
+      "description": "Open-source project management tool",
+      "administrator_only": false,
+      "image": "redmine:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
+      "platform": "linux",
+      "categories": [
+          "project-management"
+      ],
+      "volumes": [
+          {
+              "container": "/usr/src/redmine/files"
+          }
+      ],
+      "ports": [
+          "3000/tcp"
+      ]
+  },
+  {
+      "Id": 21,
+      "type": 1,
+      "title": "Odoo",
+      "description": "Open-source business apps",
+      "administrator_only": false,
+      "image": "odoo:latest",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
+      "env": [
+          {
+              "name": "HOST",
+              "label": "PostgreSQL database host"
+          },
+          {
+              "name": "USER",
+              "label": "Database user"
+          },
+          {
+              "name": "PASSWORD",
+              "label": "Database password"
+          }
+      ],
+      "platform": "linux",
+      "categories": [
+          "project-management"
+      ],
+      "volumes": [
+          {
+              "container": "/var/lib/odoo"
+          },
+          {
+              "container": "/mnt/extra-addons"
+          }
+      ],
+      "ports": [
+          "8069/tcp"
+      ]
+  },
+  {
+      "Id": 22,
+      "type": 1,
+      "title": "Urbackup",
+      "description": "Open-source network backup",
+      "administrator_only": false,
+      "image": "cfstras/urbackup",
+      "repository": {
+          "url": "",
+          "stackfile": ""
+      },
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
+      "note": "This application web interface is exposed on the port 55414 inside the container.",
+      "platform": "linux",
+      "categories": [
+          "backup"
+      ],
+      "volumes": [
+          {
+              "container": "/var/urbackup"
+          }
+      ],
+      "ports": [
+          "55413/tcp",
+          "55414/tcp",
+          "55415/tcp",
+          "35622/tcp"
+      ]
+  }
+]
