@@ -12,12 +12,12 @@ export default function NavBar() {
   return (
     authService.isLoggedIn() ? (
     <Navbar variant="dark" fixed="top" collapseOnSelect expand="md">
-        <img id="nav-bar-img" src="../logo.png" alt="Logo" onClick={() => {history.push("/my-apps")}}/>
+        <img id="nav-bar-img" src="../logo.png" alt="Logo" onClick={() => {history.push("/")}}/>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <li className="nav-item">
-            <Link id="nav-item-1" className="nav-link" to="/my-apps">
+            <Link id="nav-item-1" className="nav-link" to="/">
               Meine Apps
             </Link>
           </li>

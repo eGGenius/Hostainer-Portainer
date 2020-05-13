@@ -20,9 +20,13 @@ export const authService = {
       // password: e.target.elements.password.value,
     })
       .then((res) => {
+        console.log(res.data);
         localStorage.setItem("jwt", res.data.jwt);
         localStorage.setItem("username", username);
         callback();
+      })
+      .catch((err) => {
+        console.log(err);
       });
   },
   logout() {

@@ -27,10 +27,10 @@ export default function App() {
           {/* Public Route */}
           <Route path="/login" component={LoginPage} />
           {/* Private Routes */}
-          <PrivateRoute exact path="/my-apps" component={MyAppsPage} />
           <PrivateRoute exact path="/apps" component = {AppStorePage} />
           <PrivateRoute path={"/apps/:templateId"} component={ShowAppPage} />
-          <PrivateRoute exact path="/" ><Redirect to="/my-apps" /></PrivateRoute>
+          <PrivateRoute exact path="/my-apps" component={MyAppsPage} />
+          <PrivateRoute exact path="/" component={MyAppsPage}/>
           <PrivateRoute path="/" component={PageNotFoundPage} />
         </Switch>
       </Router>
@@ -38,14 +38,14 @@ export default function App() {
   );
 }
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
-        authService.isLoggedIn() ? (children) : (<Redirect to={{
+      render={(props) =>
+        authService.isLoggedIn() ? (<Component {...props} {...rest} />) : (<Redirect to={{
           pathname: "/login",
-          state: { from: location }
+          state: { from: props.location }
         }} />)
       }
     />

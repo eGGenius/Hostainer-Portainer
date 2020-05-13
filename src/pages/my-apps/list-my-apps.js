@@ -5,16 +5,20 @@ import containerService from "../../services/container.service";
 import { Link } from "react-router-dom";
 
 export default function ListMyApps() {
-    // const [isLoaded, setIsLoaded] = useState(false);
-    // const [error, setError] = useState(null);
-
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
     const [myApps, setMyApps] = useState([]);
 
     useEffect(() => {
         containerService.listPrivateApps()
         .then(response => {
+            console.log(response.data);
             setMyApps(response.data);
-        });
+            setIsLoaded(true);
+        })
+        .catch(error => {
+            setError(error);
+        }) ;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -28,13 +32,11 @@ export default function ListMyApps() {
         return hrefString;
     }
 
-    // if (error) {
-    //     return <div>Error: {error.message}</div>;
-    // } else if (!isLoaded) {
-    //     return <div>Loading...</div>;
-    // }
-    //  else {
-    if (myApps.length !== 0) {
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else if (myApps.length > 0) {
         return (
             <Table id="list-my-apps-table" striped bordered>
                 <thead>

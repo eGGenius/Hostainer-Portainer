@@ -3,9 +3,9 @@ import axios from "axios";
 import authHeader from "../helpers/auth-header"
 
 // add Bearer Token to HTTP Header
-let config = {
-    headers: authHeader()
-}
+// let config = {
+//     headers: authHeader()
+// }
 
 // Export der Template Services 
 export const containerService = {
@@ -40,6 +40,9 @@ export const containerService = {
                     "PortBindings": portBindingsJSON
                 }
             }
+        let config = {
+            headers: authHeader()
+        }
         let deployContainerConfig = config;
         deployContainerConfig.params = params;
         
@@ -61,6 +64,9 @@ export const containerService = {
     },
     // READ -> Show Template -> GET
     showTemplate(id) {
+        let config = {
+            headers: authHeader()
+        }
         const url = '/api/templates/' + id;
         return axios.get(url, config)
     },   
@@ -73,12 +79,18 @@ export const containerService = {
         // ToDo
     },
     listContainerTemplates() {
+        let config = {
+            headers: authHeader()
+        }
         const url = "/api/templates";
         return(axios.get(url,config));
     },
     listPrivateApps() {
         // "1" ist noch nicht dynamisch -> evtl später zu ändern
         const url = "/api/endpoints/1/docker/containers/json?all=true";
+        let config = {
+            headers: authHeader()
+        }
         return(axios.get(url,config));
     }
 }

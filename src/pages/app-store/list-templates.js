@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 
 export default function ListAppTemplates() {
   const [items, setItems] = useState([]);
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
   const history = useHistory();
 
   // Note: the empty deps array [] means
@@ -17,19 +17,21 @@ export default function ListAppTemplates() {
   useEffect(() => {
     containerService.listContainerTemplates()
     .then(response => {
+      console.log(response.data);
       setItems(response.data);
+      setIsLoaded(true);
     })
     .catch(error => {
-      console.log(error);
+      setError(error);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // } else if (!isLoaded) {
-  //   return <div>Loading...</div>;
-  // } else {
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
   return (
     items.map(item => (
         <Media key={item.Id} className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
@@ -48,5 +50,7 @@ export default function ListAppTemplates() {
         </Media.Body>
       </Media>
     ))
+
   );
+  }
 }
