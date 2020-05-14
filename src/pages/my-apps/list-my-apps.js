@@ -24,17 +24,36 @@ export default function ListMyApps() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [actionToggled])
 
-    const handleClickOnDelete = (id) => {
-        containerService.deleteContainer(id)
-        .then((response) => {
-            console.log(response);
-            toggleAction(!actionToggled);
-        })
-        .catch((error) => {
-            setError(error);
-        });
-    }
+    const handleContainerAction = (id, action) => {
+        let actionRequest = null;
+        switch(action) {
+            case 'start':
+                actionRequest = containerService.startContainer(id);
+                break;
+            case 'stop':
+                actionRequest = containerService.stopContainer(id);
+                break;
+            case 'restart':
+                actionRequest = containerService.restartContainer(id);
+                break;
+            case 'delete':
+                actionRequest = containerService.deleteContainer(id);
+                break;
+            default: {}
+        }
 
+        if(actionRequest != null) {
+            actionRequest
+                .then((response) => {
+                    console.log(response);
+                    toggleAction(!actionToggled);
+                })
+                .catch((error) => {
+                    setError(error);
+                });
+        }
+    }
+    
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -69,10 +88,10 @@ export default function ListMyApps() {
                             </td>
                             <td>
                                 <ButtonGroup aria-label='Container Actions'>
-                                    <Button variant='success' size='sm' onClick={() => {}} disabled={app.State === 'running' ? (true) : (false)} >Start</Button>
-                                    <Button variant='warning' size='sm' onClick={() => {}} disabled={app.State === 'exited' ? (true) : (false)}>Stopp</Button>
-                                    <Button variant='info' size='sm' onClick={() => {}}>Neustart</Button>
-                                    <Button variant='danger' size='sm' onClick={() => handleClickOnDelete(app.Id)}>Löschen</Button>
+                                    <Button variant='success' size='sm' onClick={() => handleContainerAction(app.Id, 'start')} disabled={app.State === 'running' ? (true) : (false)} >Start</Button>
+                                    <Button variant='warning' size='sm' onClick={() => handleContainerAction(app.Id, 'stop')} disabled={app.State === 'exited' ? (true) : (false)}>Stopp</Button>
+                                    <Button variant='info' size='sm' onClick={() => handleContainerAction(app.Id, 'restart')}>Neustart</Button>
+                                    <Button variant='danger' size='sm' onClick={() => handleContainerAction(app.Id, 'delete')}>Löschen</Button>
                                 </ButtonGroup>
                             </td>
                         </tr>

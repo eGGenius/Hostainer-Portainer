@@ -29,10 +29,17 @@ export const containerService = {
     startContainer(id) {
         const url = '/api/endpoints/1/docker/containers/' + id + '/start';
         const config = getAuthConfig();
-        return axios.post(url, {}, config)
+        return axios.post(url, {}, config);
     },
     stopContainer(id) {
-
+        const url = '/api/endpoints/1/docker/containers/' + id + '/stop';
+        const config = getAuthConfig();
+        return axios.post(url, {}, config);
+    },
+    restartContainer(id) {
+        const url = '/api/endpoints/1/docker/containers/' + id + '/restart';
+        const config = getAuthConfig();
+        return axios.post(url, {}, config);
     },
     deleteContainer(id) {
         const url = '/api/endpoints/1/docker/containers/' + id + '?force=true';
