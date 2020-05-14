@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import "./app-search-filter.css";
+import "./app-store.css";
 // import { Form } from "semantic-ui-react";
 
 function SearchAndFilterBar() {

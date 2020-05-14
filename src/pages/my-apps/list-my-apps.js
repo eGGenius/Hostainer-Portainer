@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./list-my-apps.css";
-import { Table, Button, Badge } from "react-bootstrap";
+import { Table, Button, Badge, ButtonGroup } from "react-bootstrap";
 import containerService from "../../services/container.service";
+// import axios from "axios";
+// import authHeader from "../../helpers/auth-header";
 import { Link } from "react-router-dom";
 
 export default function ListMyApps() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const [myApps, setMyApps] = useState([]);
+    const [actionToggled, toggleAction] = useState(false);
 
     useEffect(() => {
         containerService.listPrivateApps()
         .then(response => {
-            console.log(response.data);
             setMyApps(response.data);
             setIsLoaded(true);
         })
@@ -20,16 +22,17 @@ export default function ListMyApps() {
             setError(error);
         }) ;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [actionToggled])
 
-
-    const getURL = (privatePort, publicPort) => {
-        const url = window.location;
-        const hostname = url.hostname;
-        // ToDo: Protokoll abhängig vom "internen" Port machen -> z.B. Port 80: HTTP & Port 443 HTTPS
-        const protocol = url.protocol;
-        const hrefString = protocol + '//' + hostname + ':' + publicPort;
-        return hrefString;
+    const handleClickOnDelete = (id) => {
+        containerService.deleteContainer(id)
+        .then((response) => {
+            console.log(response);
+            toggleAction(!actionToggled);
+        })
+        .catch((error) => {
+            setError(error);
+        });
     }
 
     if (error) {
@@ -45,6 +48,7 @@ export default function ListMyApps() {
                         <th>App</th>
                         <th>Status</th>
                         <th>Link</th>
+                        <th>Aktionen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,8 +61,19 @@ export default function ListMyApps() {
                             <td>
                                     {app.Ports.map(port => (
                                         // ToDo: URL ändern
+                                        // ToDo: Middleware zur Prüfung, der erreichbaren Seiten / der Anwendung, sodass nur "gültige" Links angezeigt werden
+                                        port.PublicPort ? (
                                         <Button key={port.PublicPort} size="sm" className="open-app-button" as="a" href={getURL(port.PrivatePort, port.PublicPort)} target="_blank" rel="noopener noreferrer">{port.PublicPort}</Button>
+                                        ) : ('')
                                     ))}
+                            </td>
+                            <td>
+                                <ButtonGroup aria-label='Container Actions'>
+                                    <Button variant='success' size='sm' onClick={() => {}} disabled={app.State === 'running' ? (true) : (false)} >Start</Button>
+                                    <Button variant='warning' size='sm' onClick={() => {}} disabled={app.State === 'exited' ? (true) : (false)}>Stopp</Button>
+                                    <Button variant='info' size='sm' onClick={() => {}}>Neustart</Button>
+                                    <Button variant='danger' size='sm' onClick={() => handleClickOnDelete(app.Id)}>Löschen</Button>
+                                </ButtonGroup>
                             </td>
                         </tr>
                     ))}
@@ -100,3 +115,13 @@ const displayContainerState = (state) => {
             return "";
     }
 }
+
+const getURL = (privatePort, publicPort) => {
+    const url = window.location;
+    const hostname = url.hostname;
+    // ToDo: Protokoll abhängig vom "internen" Port machen -> z.B. Port 80: HTTP & Port 443 HTTPS
+    const protocol = url.protocol;
+    const hrefString = protocol + '//' + hostname + ':' + publicPort;
+    return hrefString;
+}
+

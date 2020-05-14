@@ -2,10 +2,7 @@
 import axios from "axios";
 import authHeader from "../helpers/auth-header"
 
-// add Bearer Token to HTTP Header
-// let config = {
-//     headers: authHeader()
-// }
+
 
 // Export der Template Services 
 export const containerService = {
@@ -13,85 +10,78 @@ export const containerService = {
     // CREATE -> Deploy Container -> POST
     deployContainer(givenName, imageName, ports) {
         const url = '/api/endpoints/1/docker/containers/create';
-
-        let exposedPortsString = '{';
-        let portBindingsString = '{'
-        ports.forEach((port, i) => {
-            exposedPortsString += '"' + port + '": {}';
-            portBindingsString += '"' + port + '": [{"HostPort":""}]';
-            if (i < ports.length - 1) {
-                exposedPortsString += ',';
-                portBindingsString += ',';
+        // set params and data/body for the request
+        const params = { "name": givenName }
+        const data = {
+            "Image": imageName,
+            "ExposedPorts": getPortJSON(ports, 'exposedPorts'),
+            "HostConfig": {
+                "PortBindings": getPortJSON(ports, 'portBindings')
             }
-        });
-        exposedPortsString += '}'
-        portBindingsString += '}'
-        const exposedPortsJSON = JSON.parse(exposedPortsString);
-        const portBindingsJSON = JSON.parse(portBindingsString);
-
-        const params = {
-            "name": givenName
         }
-        const data = 
-                {
-                "Image": imageName,
-                "ExposedPorts": exposedPortsJSON,
-                "HostConfig": {
-                    "PortBindings": portBindingsJSON
-                }
-            }
-        let config = {
-            headers: authHeader()
-        }
-        let deployContainerConfig = config;
+        let deployContainerConfig = getAuthConfig();
         deployContainerConfig.params = params;
         
+        // post request
         return axios.post(url, data, deployContainerConfig);
     },
     // Start a container
     startContainer(id) {
         const url = '/api/endpoints/1/docker/containers/' + id + '/start';
-        const data = '';
-        console.log("Versuche Container zu starten...");
-        const startContainerConfig = {headers: authHeader()};
-        axios.post(url, data, startContainerConfig)
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        const config = getAuthConfig();
+        return axios.post(url, {}, config)
+    },
+    stopContainer(id) {
+
+    },
+    deleteContainer(id) {
+        const url = '/api/endpoints/1/docker/containers/' + id + '?force=true';
+        const config = getAuthConfig();
+        return axios.delete(url, config);
     },
     // READ -> Show Template -> GET
     showTemplate(id) {
-        let config = {
-            headers: authHeader()
-        }
         const url = '/api/templates/' + id;
+        const config = getAuthConfig();
         return axios.get(url, config)
     },   
-    // UPDATE -> Update Template -> PUT
-    updateApp() {
-        // ToDo
-    },
-    // DELETE -> Delete Template
-    removeApp() {
-        // ToDo
-    },
     listContainerTemplates() {
-        let config = {
-            headers: authHeader()
-        }
         const url = "/api/templates";
+        const config = getAuthConfig();
         return(axios.get(url,config));
     },
     listPrivateApps() {
         // "1" ist noch nicht dynamisch -> evtl später zu ändern
         const url = "/api/endpoints/1/docker/containers/json?all=true";
-        let config = {
-            headers: authHeader()
-        }
+        const config = getAuthConfig();
         return(axios.get(url,config));
     }
 }
 export default containerService;
+
+const getPortJSON = (ports, type) => {
+    let stringToAdd = '';
+    let string = '{';
+    if(type === 'exposedPorts') {
+        stringToAdd = '{}'
+    } else if (type === 'portBindings') {
+        stringToAdd = '[{"HostPort":""}]'
+    }
+    ports.forEach((port, i) => {
+        string += '"' + port + '": ' + stringToAdd;
+        if (i < ports.length - 1) {
+            string += ',';
+        }
+    });
+    string += '}'
+    const portsJSON = JSON.parse(string);
+    return portsJSON;
+}
+
+// add Bearer Token to HTTP Header
+const getAuthConfig = () => {
+    let config = {
+        headers: authHeader()
+    }
+    return config;
+}

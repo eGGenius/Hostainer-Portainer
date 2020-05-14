@@ -1,17 +1,34 @@
-import React, { Component } from "react";
-import SearchAndFilterBar from "../../components/app-search-filter/app-search-filter"
+import React, { useState } from "react";
 import ListAppTemplates from "./list-templates"
-import { Container } from "react-bootstrap";
+import { Container, Form, Col} from "react-bootstrap";
 
-class AppStorePage extends Component {
-  render() {
-    return (
-      <Container className="site-content">
-        <SearchAndFilterBar />
-        <ListAppTemplates />
-      </Container>
-    );
+export default function AppStorePage() {
+  const [searchString, setSearchString] = useState('');
+  const [category, setCategory] = useState('Choose...')
+
+  const updateSearch = (e) => {
+    setSearchString(e.target.value);
   }
-}
 
-export default AppStorePage;
+  const updateCategory = (e) => {
+    setCategory(e.target.value);
+  }
+  return (
+    <Container className="site-content">
+      <Form id="app-search">
+        <Form.Row>
+          <Col>
+            <Form.Control placeholder="Suche" value={searchString} onChange={updateSearch} />
+          </Col>
+          <Col>
+            <Form.Control as="select" value={category} onChange={updateCategory}>
+              <option>Choose...</option>
+              <option>...</option>
+            </Form.Control>
+          </Col>
+        </Form.Row>
+      </Form>
+      <ListAppTemplates />
+    </Container>
+  );
+}

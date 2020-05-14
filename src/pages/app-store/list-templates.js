@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Media from "react-bootstrap/Media";
 import { Container } from "react-bootstrap";
-import "./list-templates.css";
+import "./app-store.css";
 import containerService from "../../services/container.service";
 import { useHistory } from "react-router-dom";
+// import axios from "axios";
+// import authHeader from "../../helpers/auth-header";
 
 export default function ListAppTemplates() {
   const [items, setItems] = useState([]);
@@ -17,7 +19,6 @@ export default function ListAppTemplates() {
   useEffect(() => {
     containerService.listContainerTemplates()
     .then(response => {
-      console.log(response.data);
       setItems(response.data);
       setIsLoaded(true);
     })
@@ -32,25 +33,24 @@ export default function ListAppTemplates() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-  return (
-    items.map(item => (
-        <Media key={item.Id} className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
-        <img
-          width={64}
-          height={64}
-          className="align-self-center mr-3"
-          src={item.logo}
-          alt={item.title}
-        />
-        <Media.Body className="app-list-media-body">
-          <Container fluid>
-            <h5>{item.title}</h5>
-            <p className="app-list-item-description">{item.description}</p>
-          </Container>
-        </Media.Body>
-      </Media>
-    ))
-
-  );
+    return (
+      items.map(item => (
+          <Media key={item.Id} className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
+          <img
+            width={64}
+            height={64}
+            className="align-self-center mr-3"
+            src={item.logo}
+            alt={item.title}
+          />
+          <Media.Body className="app-list-media-body">
+            <Container fluid>
+              <h5>{item.title}</h5>
+              <p className="app-list-item-description">{item.description}</p>
+            </Container>
+          </Media.Body>
+        </Media>
+      ))
+    );
   }
 }
