@@ -2,11 +2,12 @@
     background-color: #0a2133;
     width: 100vw;
     height: 100vh;
-    padding: 15vh 30vw 15vh 30vw;
+    padding: 20vh 20vw 50vh 40vw;
 }
 
 #auth-wrapper {
-    width: 40vw;
+    text-align: center;
+    width: 20vw;
     background-color: #ffffff;
     border: 0.3px solid lightgray;
     border-radius: 1rem;
@@ -17,7 +18,7 @@
 }
 
 #auth-inner-logo{
-    width: 33%;
+    width: 100%;
     border-radius: 10px;
     margin-bottom: 1rem;
 }

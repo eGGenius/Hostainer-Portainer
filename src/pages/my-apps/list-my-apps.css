@@ -3,7 +3,16 @@
 }
 
 .open-app-button {
-    background-color: #0a2133;
-    border-color: #0a2133;
+    background-color: #00a1ff;
+    border-color: #00a1ff;
     margin-right: 5px;
+}
+
+#list-my-apps-table{
+    margin-top: 100px;
+    border-radius: 20px;
+    background-color: #202A33;
+    border-top-style: hidden !important;
+    border-bottom-style: hidden !important;
+    color: white;
 }
