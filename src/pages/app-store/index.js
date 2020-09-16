@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import ListAppTemplates from "./list-templates"
 import { Container, Form, Col} from "react-bootstrap";
 
-export default function AppStorePage() {
+let searchFilter = "";
+let searchCategory = "";
+function AppStorePage() {
   const [searchString, setSearchString] = useState('');
   const [category, setCategory] = useState('Choose...')
 
   const updateSearch = (e) => {
+    searchFilter = e.target.value;
     setSearchString(e.target.value);
   }
 
   const updateCategory = (e) => {
+    searchCategory = e.target.value;
     setCategory(e.target.value);
   }
   return (
@@ -22,8 +26,17 @@ export default function AppStorePage() {
           </Col>
           <Col>
             <Form.Control as="select" value={category} onChange={updateCategory}>
-              <option>Choose...</option>
-              <option>...</option>
+              <option value=''>Wähle eine Kategorie...</option>
+              <option>webserver</option>
+              <option>database</option>
+              <option>storage</option>
+              <option>messaging</option>
+              <option>blog</option>
+              <option>CMS</option>
+              <option>Monitoring</option>
+              <option>marketing</option>
+              <option>filesystem</option>
+              <option>backup</option>
             </Form.Control>
           </Col>
         </Form.Row>
@@ -32,3 +45,6 @@ export default function AppStorePage() {
     </Container>
   );
 }
+export default AppStorePage;
+export {searchFilter}
+export {searchCategory}

@@ -51,7 +51,7 @@ export default function DeployContainerForm(props) {
                         </InputGroup.Prepend>
                         <Form.Control
                             type="text"
-                            placeholder="Legen Sie einene Namen für die Anwendung fest"
+                            placeholder="Legen Sie einen Namen für die Anwendung fest"
                             name="app-name"
                             value={name}
                             onChange={(e) => { setName(e.target.value) }}

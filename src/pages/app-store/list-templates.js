@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import "./app-store.css";
 import containerService from "../../services/container.service";
 import { useHistory } from "react-router-dom";
+import { searchFilter, searchCategory } from "./index.js"
 // import axios from "axios";
 // import authHeader from "../../helpers/auth-header";
 
@@ -33,8 +34,23 @@ export default function ListAppTemplates() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
+    let categoryFilteredItems = items.filter(
+      (item) => {
+        if(searchCategory === ""){
+          return item;
+        }
+        else {
+          return item.categories.indexOf(searchCategory) !== -1;
+        }
+      }
+    );
+    let filteredItems = categoryFilteredItems.filter(
+      (item) => {
+        return item.title.toLowerCase().indexOf(searchFilter.toLowerCase()) !== -1;
+      }
+    );
     return (
-      items.map(item => (
+      filteredItems.map((item) => (
           <Media key={item.Id} className="app-list-item" onClick={() => {history.push("/apps/" + item.Id)}}>
           <img
             width={64}

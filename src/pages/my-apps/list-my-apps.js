@@ -60,7 +60,7 @@ export default function ListMyApps() {
         return <div>Loading...</div>;
     } else if (myApps.length > 0) {
         return (
-            <Table id="list-my-apps-table" striped bordered>
+            <Table id="list-my-apps-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -72,7 +72,7 @@ export default function ListMyApps() {
                 </thead>
                 <tbody>
                     {myApps.map(app => (
-                        <tr key={app.Id}>
+                        <tr className="containerItem" key={app.Id}>
                             <td>{sliceName(app.Names[0])}</td>
                             <td>{app.Image}</td>
                             {/* Starting, Running, Stopped */}
